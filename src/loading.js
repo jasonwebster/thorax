@@ -366,6 +366,10 @@ _.each(klasses, function(DataClass) {
       if (arguments.length === 2 && !_.isFunction(failback)) {
         options = failback;
         failback = false;
+      } else if (arguments.length === 1 && _.isObject(callback)) {
+        options = callback;
+        callback = options.success;
+        failback = options.error;
       }
 
       options = options || {};
