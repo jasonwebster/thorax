@@ -2,7 +2,10 @@ Thorax.Mixins = {};
 
 _.extend(Thorax.View, {
   mixin: function(name) {
-    Thorax.Mixins[name](this);
+    var _this = this;
+    _.each(arguments, function(name) {
+      Thorax.Mixins[name](_this);
+    });
   },
   registerMixin: function(name, callback, methods) {
     Thorax.Mixins[name] = function(obj) {
@@ -20,5 +23,8 @@ _.extend(Thorax.View, {
 });
 
 Thorax.View.prototype.mixin = function(name) {
-  Thorax.Mixins[name](this);
+  var _this = this;
+  _.each(arguments, function(name) {
+    Thorax.Mixins[name](_this);
+  });
 };
